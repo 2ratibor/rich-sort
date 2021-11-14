@@ -5,8 +5,8 @@
     "main": "src/rich-sort.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "ncp src node_modules/rich-sort",
-        "publish": "cd node_modules/rich-sort/ && npm publish"
+        "build": "ncp src node_modules/rich-sort && cp README.md node_modules/rich-sort",
+        "publish": "cd node_modules/rich-sort/ && npm version patch && npm publish"
     },
     "dependencies": {
         "rich-sort": "^1.0.0"
