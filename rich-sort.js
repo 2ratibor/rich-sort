@@ -4,9 +4,14 @@
  * @param comparisonFunc callback function which set the order of sorting. Logic the same like in native array's method ".sort()". Parameter is optional
  * @returns {Array} return the sorted array of numbers. Implements the pattern of chain responsibility
  */
-Array.prototype.richSort = function(comparisonFunc = comparisonFuncDefault) {
+Array.prototype.richSort = function(comparisonFunc) {
     if (this.length < 2) {
         return this;
+    }
+
+    let compareFunc = comparisonFunc;
+    if (compareFunc === undefined) {
+        compareFunc = comparisonFuncDefault;
     }
 
     let minIndex = 0;
@@ -15,10 +20,10 @@ Array.prototype.richSort = function(comparisonFunc = comparisonFuncDefault) {
     const arrLength = arr.length;
 
     for (let i = 0; i < arrLength; i++) {
-        if (comparisonFunc(arr[minIndex], arr[i]) > 0) {
+        if (compareFunc(arr[minIndex], arr[i]) > 0) {
             minIndex = i;
         }
-        if (comparisonFunc(arr[i], arr[maxIndex]) > 0) {
+        if (compareFunc(arr[i], arr[maxIndex]) > 0) {
             maxIndex = i;
         }
     }
@@ -31,7 +36,7 @@ Array.prototype.richSort = function(comparisonFunc = comparisonFuncDefault) {
     const filteredArrLength = arr.length;
 
     for (let j = 0; j < filteredArrLength; j++) {
-        const posNumber = getTargetPositionNumber(comparisonFunc, resultArr, arr[j]);
+        const posNumber = getTargetPositionNumber(compareFunc, resultArr, arr[j]);
         resultArr.splice(posNumber, 0, arr[j]);
     }
 
@@ -40,22 +45,23 @@ Array.prototype.richSort = function(comparisonFunc = comparisonFuncDefault) {
         this[k] = resultArr[k];
     }
 
+    function comparisonFuncDefault(a, b) {
+        return a - b;
+    }
+
+    function getTargetPositionNumber(compFunc, arr, num) {
+        const positionNumber = Math.floor(arr.length / 2);
+        const targetPositionIsToTheLeft = compFunc(arr[positionNumber - 1], num) > 0;
+        const targetPositionIsToTheRight = compFunc(num, arr[positionNumber]) > 0;
+        if (!targetPositionIsToTheLeft && !targetPositionIsToTheRight) {
+            return positionNumber;
+        } else if (targetPositionIsToTheLeft) {
+            return getTargetPositionNumber(compFunc, arr.slice(0, positionNumber), num);
+        } else {
+            return positionNumber + getTargetPositionNumber(compFunc, arr.slice(positionNumber), num);
+        }
+    }
+
     return this;
 }
 
-function comparisonFuncDefault(a, b) {
-    return a - b;
-}
-
-function getTargetPositionNumber(compFunc, arr, num) {
-    const positionNumber = Math.floor(arr.length / 2);
-    const targetPositionIsToTheLeft = compFunc(arr[positionNumber - 1], num) > 0;
-    const targetPositionIsToTheRight = compFunc(num, arr[positionNumber]) > 0;
-    if (!targetPositionIsToTheLeft && !targetPositionIsToTheRight) {
-        return positionNumber;
-    } else if (targetPositionIsToTheLeft) {
-        return getTargetPositionNumber(compFunc, arr.slice(0, positionNumber), num);
-    } else {
-        return positionNumber + getTargetPositionNumber(compFunc, arr.slice(positionNumber), num);
-    }
-}
