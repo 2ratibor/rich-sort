@@ -9,7 +9,7 @@ npm i rich-sort --save
 <br>
 
 ### Usage with Angular
-#### Just add to the "scripts" section of angular.json file next code:
+#### Just add to the "scripts" section of angular.json file following code:
 ```
 "scripts": [
     "node_modules/rich-sort/rich-sort.js"
