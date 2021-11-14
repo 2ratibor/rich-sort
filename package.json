@@ -1,0 +1,31 @@
+{
+    "name": "rich-sort",
+    "version": "1.0.0",
+    "description": "Package which adds to Array.prototype new method \".richSort()\" for sorting array of numbers",
+    "main": "src/rich-sort.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "ncp src node_modules/rich-sort",
+        "publish": "cd node_modules/rich-sort/ && npm publish"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "ncp": "2.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/2ratibor/rich-sort.git"
+    },
+    "keywords": [
+        "Sorting",
+        "array",
+        "of",
+        "numbers"
+    ],
+    "author": "Denys Stepanov(dex.stepanov@gmail.com)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/2ratibor/rich-sort/issues"
+    },
+    "homepage": "https://github.com/2ratibor/rich-sort#readme"
+}
