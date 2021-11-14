@@ -15,3 +15,19 @@ npm i rich-sort --save
     "node_modules/rich-sort/rich-sort.js"
 ]
 ```
+<br>
+
+### Example of usage:
+```
+const arr = [3, 5, 2, 1, 33, 16, 11, 7, 8, 12, 20];
+
+(arr as any).richSort();
+```
+#### or
+```
+const arr = [3, 5, 2, 1, 33, 16, 11, 7, 8, 12, 20];
+        
+(arr as any).richSort((a, b) => {
+    return b - a;
+});
+```
