@@ -64,3 +64,4 @@ Array.prototype.richSort = function(comparisonFunc) {
 
     return this;
 }
+
