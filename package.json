@@ -8,7 +8,9 @@
         "build": "ncp src node_modules/rich-sort",
         "publish": "cd node_modules/rich-sort/ && npm publish"
     },
-    "dependencies": {},
+    "dependencies": {
+        "rich-sort": "^1.0.0"
+    },
     "devDependencies": {
         "ncp": "2.0.0"
     },
