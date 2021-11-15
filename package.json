@@ -9,7 +9,7 @@
         "publish": "cd node_modules/rich-sort/ && npm version patch && npm publish"
     },
     "dependencies": {
-        "rich-sort": "^1.0.0"
+        "rich-sort": "^1.0.4"
     },
     "devDependencies": {
         "ncp": "2.0.0"
